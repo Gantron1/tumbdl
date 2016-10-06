@@ -1,5 +1,0 @@
-cd ~/Downloads/tumbdl-master/seductquest
-nautilus . &
-gvim ../kumbdl.sh articles.txt
-echo -n "File count: "
-ls -1 | wc -l
