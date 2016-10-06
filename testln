@@ -1,0 +1,79 @@
+#!/bin/bash
+: <<'COMMENT1'
+	Script to read backwards from an input file until a datestamp is reached. Skip blank lines and a line with "articles.txt".
+
+	Tons of fun bash scripting learning going on in this:
+
+		* Add "IFS=''" after "while" to not trim whitespace.
+
+		* Note the "|| [[ -n "$line" ]]"? That makes it still work in case there's no CR after the last line.
+
+		* How to do a regex in an if statement.
+
+		* How to use $BASH_REMATCH to get the matches from the last regex. Note the ${#BASH_REMATCH} that returns the strlen.
+
+		* break and continue in loops
+
+		* Use < to use a file as input to the while loop.
+
+			* To use the output of a command instead of a file, put the command inside "<( ... )".
+
+			* The -r param to "read" makes backslash be just a backlash. (Without -r, \ can be used to break long lines.)
+
+		* How to use heredoc for a multi-line comment. The : is a noop, and put COMMENT1 in single quotes to prevent substitution and expansion.
+
+		* How to get script's directory. See: http://stackoverflow.com/questions/59895/can-a-bash-script-tell-which-directory-it-is-stored-in/246128#246128
+
+			* BASH_SOURCE is a bash array variable containing source filenames. So "${BASH_SOURCE[0]}" would return you the name of the script file.
+
+		* How backticks used to execute commands, outputting the result. Also, $(...) does the same thing (command substitution), but can be nested.
+
+		* Use mktemp to make temporary files or directories (-d option). -p tells which directory to put it in.
+
+		* Use a trap to delete the temp folder even if script aborts.
+
+		* tac is cat backwards.
+COMMENT1
+
+# Get the directory of the script
+scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Make a temp folder there
+workDir=`mktemp -d -p "$scriptDir"`
+
+# Function to delete the temp directory
+function cleanup {
+  rm -rf "$workDir"
+  echo "Deleted temp working directory $workDir"
+}
+
+# register the cleanup function to be called on the EXIT signal
+trap cleanup EXIT
+
+# Read the log file and make symlinks to the latest downloads in temp folder. Could make these symlinks in kumbdl.sh itself and not use the log file at all. Hmm... well, I guess this script is just for fun then. Oh yeah, I meant it as a temporary script just to learn on and test with before putting it in kumbdl.sh. Yeah, that's the ticket.
+while read -r line || [[ -n "$line" ]]; do
+	#regex="^[0-9: -]+\s*$"  Old, less accurate but shorter way. Need to put in variable or else space made bash throw error.
+	regex="^([0-9]{4}-[0-9][0-9]-[0-9][0-9]) ([0-9][0-9]:[0-9][0-9]:[0-9][0-9])$"
+	if [[ $line =~ $regex ]]; then 
+		echo 1: $BASH_REMATCH
+		echo 2: ${BASH_REMATCH[0]}
+		echo 3: ${BASH_REMATCH[1]}
+		echo 4: ${BASH_REMATCH[2]}
+		echo 5: ${#BASH_REMATCH}
+		echo 6: ${#BASH_REMATCH[1]}
+		echo 7: ${#BASH_REMATCH[2]}
+		mkdir ~/Downloads/tumbdl-master/symlinks/romanticpics11/${BASH_REMATCH[1]}
+		break 
+	fi
+	if [[ $line =~ ^\s*$ ]]; then continue; fi
+	if [[ $line == "articles.txt" ]]; then continue; fi
+
+	ln -s /home/kanon/Downloads/tumbdl-master/sq-pose/$line $workDir/$line
+
+	# Give videos an .mp4 extension
+	if ! [[ $line =~ [^.]+\.[^.]+ ]] ; then mv $workDir/$line $workDir/$line.mp4; fi
+
+done < <(tac ~/logs/kumbdl-ls-diff-sq-pose.log)
+
+# Move symlinks from temp folder to symlink folder
+mv $workDir/* /home/kanon/Downloads/tumbdl-master/symlinks/romanticpics11/${BASH_REMATCH[1]}
