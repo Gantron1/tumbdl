@@ -1,0 +1,5 @@
+* dlsq also d/l other tumblogs
+
+* do a proper diff
+
+* cron keeps log, not just when last one was done

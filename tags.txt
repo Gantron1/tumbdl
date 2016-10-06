@@ -1,0 +1,286 @@
+video or gif?
+mf, fff, etc.
+b/w, closeup, etc.
+female characteristics (hair, petite, busty, etc.)
+position (some positions have names, but for the rest, use descriptions like sitting, lying, all fours, etc, to describe each participant)
+act and act characteristics (standing, leaning back, hand somewhere, sitting up, etc.)
+
+POSITIONS
+
+	69
+	counterblow (Deprecated. Girl lying on counter head back to give upsidedown head. Use "supine, lying, blowjob (or deepthroat)", instead.)
+	cowgirl
+	doggy
+	flat dog
+	missionary 
+	piledriver (woman lying with legs over head, man fucking downward)
+	reverse cowgirl
+	reverse dog (man on back)
+	scissors (can be tribbing or sex)
+	seven (woman on side, legs spread. Man between legs.)
+	side dog
+	up missionary (Man is up. Woman on her back.)
+
+	kneeling blowjob (deprecated. Search for and replace with constituent keywords.)
+	kneeling cunni (deprecated. Search for and replace with constituent keywords.)
+
+ACTS
+
+	anal
+	ass play
+	blowjob (use deepthroat for deepthroat)
+	body lick (can be kissing too)
+	bondage
+	boob massage
+	boob suck
+	bouncing boobs
+	cock rub (as on face, boobs, vagina, etc)
+	cock slap (as on face or vagina)
+	crawling
+	cumshot (use facial for facial)
+	cunni
+	deepthroat
+	double penetration
+	facial
+	female masturbation
+	female non-penetration (cock to pussy contact, woman moving)
+	fisting
+	finger in mouth
+	fingering (also when man rubs clit, etc)
+	fish hook
+	hair pull
+	handjob
+	kissing (on the mouth)
+	kneeling
+	male masturbation
+	male non-penetration (cock to pussy contact, man moving)
+	massage
+	multi-blow
+	pee
+	rimming
+	sandwich
+	sleeping
+	titty fuck
+	tribbing
+	spanking
+	teabag
+	undressing
+	vag2anal
+	Voyeur
+
+ACT CHARACTERISTICS
+
+	all fours
+	balls (woman playing with the balls, balls hanging low, swinging, etc)
+	bruises
+	choking (with hands)
+	closed legs (when not usual for the position)
+	dildo
+	dom/sub
+	face-sitting (anytime ass in face, not just sitting)
+	funny
+	gape
+	hand on boobs
+	hand on cock
+	hand on head
+	hand on pussy
+	hard thrust
+	insertion (insertion of cock (usually into ass) emphasized)
+	interesting (misc interesting thing going on. E.g. pussy opening or closing, odd pulsing)
+	leaning back (variation that can be applied to different positions. e.g. cowgirl and reverse cowgirl.)
+	lips (labia prominent or unusual)
+	lying
+	nipple (nipple featured, often with "pinch")
+	oil
+	pinch (often nipple)
+	plow (as in the yoga position)
+	romantic
+	prone (lying on belly, usually applied to lying blowjob)
+	pullout (cock comes out of pussy or ass, intentionally or not)
+	saliva
+	side (can apply to many positions as variation, like woman on her side being fucked but not side dog which is both on their sides, i.e. spooning)
+	sitting
+	sitting up (as variation of a position where sitting is not the usual)
+	smush boobs
+	smush face
+	spread legs (when exceptionally wide or not usual for the position. Also used for legs pulled up and back in missionary.)
+	standing (variation that can be applied to different positions. e.g. 69 and missionary.)
+	squirt
+	strapon
+	supine (lying on back, usually applied to lying blowjob)
+	suspended (if woman is suspended off the ground OR man is holding himself off he ground)
+	teasing (woman teases the man)
+	tongue (tongue featured prominently or unusually long)
+	vibe (vibrating toy that's not a dildo, e.g. sybian or massager)
+	woman move (in a position where usually the man moves)
+
+FEMALE CHARACTERISTICS
+
+	RACE
+		asian
+		african
+
+	HAIR
+		blonde
+		brunette
+		redhead
+
+	OTHER
+		bush
+		busty
+		hot (unusually beautiful or glamorous. Mostly for pose pics.)
+		feel good (facial expression)
+		petite
+		piercings
+		tattoo
+
+MALE CHARACTERISTIC
+
+	big cock
+
+SCENE
+	ballet
+	bath
+	fantasy
+	shower
+	slow motion
+	underwater
+
+IMAGE CHARACTERISTICS
+
+	b/w
+	closeup
+	gif (animated)
+	pose
+	selfie
+	series
+	video
+
+RATING
+
+	nudity (deprecated. Assumed.)
+	pg
+	x (deprecated. Assumed.)
+
+BODY PARTS (For pose pics. To determine if the body part is featured predominantly.)
+
+	ass
+	boobs
+
+PARTICIPANTS
+
+f
+ff
+mf
+mff
+
+
+-------------------------------------------------
+
+digikam: Read tags for exif data, including category tree. Shows all tags, so have to scroll down to see which ones already applied. Can do keyboard-only tagging by staying in the tag textbox, typing, and hitting TAB to select the autocompleted tag. Then pgdn to go to next image. Animated gifs do not animate.
+
+kphotoalbum: took forever to parse folder, kept crashing, has neat keyboard-only tagging, but I never got to it. Can also apply single-letter "tokens". Stores tags in own xml, not file's metadata. Did not read tags I already did and stored in exif. Animated gifs don't animate.
+
+gtkrawgallery: could not install due to liblcms1 not being able to be installed. Could not find info on animated gif support, nor method of tagging, but it claims very fast tagging.
+
+shotwell: no animated gif support. Did not look further.
+
+picty: no animated gif support. Did not look further.
+
+fotoxx: probably no animated gif support. Did not look further.
+
+f-spot:
+
+xnview: animated gif support, but seems no quick tagging. I've figured out that gif doesn't have exif, xmp, and iptc support, so for them, I can't put the tags in the file anyway. Might be good to look at the tags to verify. Gimp also.
+
+gthumb: animated gif support. Okay tagging. Tags may or may not go into file's metadata, but I think they do, just not with gif. It didn't used to, but I think they fixed it: https://bugs.launchpad.net/ubuntu/+source/gthumb/+bug/213367
+
+------------------------------
+
+I've decided to use gthumb. Tags will go into metadata for jpg, but go into an xml file for gif and mp4.
+
+To facilitate tagging, run autokey. When autokey is active, the following things occur:
+
+* ctrl-t: When viewing an image, it opens the tag window and moves it off the image. (Why did the gthumb developers put it right over it???)
+
+Then, once in the tag window, the following key substitutions occur:
+
+* Tab is down: Use this to select a tag from the list
+
+* ctrl-j: selects all tags you typed, copies to clipboard, and deselects. Use this for a series of pictures with common tags.
+
+* ctrl-enter: Saves and quits the tag window, then moves to the next image.
+
+-----------------------------
+
+The above works well, but maybe dmenu will work even better? I could use dmenu combined with autokey to make a kphotoalbum-like tagging system (i.e. the best keyboard-only tagging system possible). 
+
+Make ctrl-t open (and move) the tag window as before, but now it runs dmenu next. You then use dmenu to select the tags using categories. Type the first few letters to narrow it down, and ideally, if the category names are different enough, you'll only have to type 1 or 2 letters. Hit enter.
+
+Dmenu runs again, this time with the chosen category's tags. Again, hopefully the tags are different enough that only a few keystrokes narrows it down to the one you want, but you could also use the arrow keys and ctrl keys to move over the list.
+
+I thought about keeping track of frequency of use, but nah. Too much work when I probably won't use the arrow keys anyway. In fact, I wonder if even categories are necessary? Maybe just for some things.
+
+Another idea is to present a series of dmenus one after the other. This will help people not forget certain tags. For example, I often forget "series." It could ask: "none gif video", and you'd just hit enter for none or g or v, enter. Easy; no brain-work necessary.
+
+Then it'd give the "f mf fff..." menu, the "b/w series" menu, and then the rest.
+
+Or it could guide you in an even more complex way with the various positions, acts, etc. This will help prevent mistakes and maintain consistency.
+
+I'm thinking I should remap space to ctrl-enter (continue adding more) and tab to the right arrow, if I decide to present a big list of keywords.
+
+I could also have a "done" option at the beginning. That might be better because the input isn't cleared after a ctrl-enter.
+
+Ok, I just organized all currently existing tags. I think the best system is:
+
+1. Media type: none, gif, or video
+2. Image characteristics: b/w, closeup, series
+3. Participants: f, mf, ff, mff, etc.
+4. Participant characteristics: race, hair, etc.
+5. NOT ANYMORE All rest mixed together: scene, sexual position, variations, primary act, secondary act, body position, and act characteristics. BUT, mixed in are options to go to individual menus for these, and in each individual menu are options for back (or all?) and all the other individual menus. I suppose there could be also options to go back to all earlier menus too.
+
+On the other hand, not mixing so much together might cut down on necessary keystrokes to narrow things down. Ah, I could mix common stuff in a top-level menu, along with individual menus to less common stuff, categorized.
+
+Yeah, so here's the top-level menu: 69, cowgirl, doggy, missionary, reverse, anal, sitting up, smush boobs, smush face (maybe change to face smush), spread legs, supine, prone, kneeling, sitting, all fours, plow, side, standing, blowjob, deepthroat, cunni, handjob, tribbing, fucking, pose, bondage, bouncing boobs, cumshot, facial, female masturbation, fingering, hair pull, kissing, hand on boob (maybe change to boob touch), hand on head, ass, tongue, romantic, woman move, dom/sub, hard thrust, teasing.
+
+69, al an, as, bl, bon, boo, bou, co, cum, cun, de, dog, dom, fa, fe, fi, fu, hai, handj, hand o, har, ki, kn, m, pl, po, pr, re, ro, sid, sitting, sitting u, smush b, smush f, sp, st, su, te, to, tr, w
+
+Ok, so maybe remove handjob, sitting up, and smush boob. Then they're all pretty short!
+
+Oh, wait. I just learned dmenu will search inside entries too, so smush boobs could just be "h b". Ok, so with this discovery, no changes are necessary, and keyword clarity is priority over first letters uniqueness.
+
+NOT ANYMORE Mixed in with these are: SP (Sexual Positions), VA (Variations), BP (Body Positions), PA (Primary Act), SA (Secondary Acts), AC (Act Characteristics), IC (Image Characteristics), SC (Scene), MC (Model Characteristics), FM (f, mf, ff, etc)
+
+Latest/greatest:
+
+1. Media type: gif or video
+2. Image characteristics: b/w, closeup, series
+3. Participants: f, mf, ff, mff, etc.
+4. Participant characteristics: race, hair, etc.
+5. Female body position.
+6. Most common of the rest of the keywords.
+
+In all of these menus, & goes back and * goes forward. 
+
+Going forward * in the Common menu means done. $ in any menu is done.
+
+Once you select from Participants, you can't get to that menu anymore, because there's always only one of those.
+
+Then in step 6, you can go to the individual submenus by hitting a capital letter (followed by enter, dammit):
+
+P = Participant Characteristics (not Participants because that's needed only once.)
+B = Body position
+C = sCene
+S = Sexual position
+V = Variation
+7 = p7imary act
+8 = 8econdary act
+A = Act characteristics
+
+After selecting something in step 6, it returns to step 6. The others go to the next menu. Individual submenus go back to the Common menu. 
+
+Common Menu: 69, cowgirl, doggy, missionary, reverse, anal, sitting up, smush boobs, smush face (maybe change to face smush), spread legs, supine, prone, kneeling, sitting, all fours, plow, side, standing, blowjob, deepthroat, cunni, handjob, tribbing, fucking, pose, bondage, bouncing boobs, cumshot, facial, female masturbation, fingering, hair pull, kissing, hand on boob (maybe change to boob touch), hand on head, ass, tongue, romantic, woman move, dom/sub, hard thrust, teasing.
+
+Gives error if select keyword that's not in system. (Maybe ask if it should be added, and if so, use dmenu to ask which menu to append to. No, just do below.)
+
+To add a new keyword, add a * at the end.

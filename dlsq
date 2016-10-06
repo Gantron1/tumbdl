@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Backup the SeductQuest tumblog (and update youtube-dl as part of the process). Uses kumbdl.sh, written by me to make tumbdl able to d/l embedded videos, a functionality it doesn't have, by calling youtube-dl.
+
+# youtube-dl --update needs to be sudo. Fix this by running this as sudo. Remember, this also is called by a cronjob, so arrange for that to run as root also. (Beware of the vulnerability this causes. Perhaps just update manually instead.)
+
+# youtube-dl --update
+
+# Old way from before using basedir and tumbarray (delete these)
+#tumblog="seductquest.tumblr.com" # Maybe set this by parameter
+#targetDir="/home/kanon/Downloads/tumbdl-master/seductquest" # Perhaps also set this by parameter or generate it from the tumblog name
+
+# Base directory to put the downloads. (Requires NO trailing /)
+basedir="/home/kanon/Downloads/tumbdl-master"
+
+# Array of tumblogs to d/l
+tumbarray=(
+	seductquest
+	romanticpics11
+	teasingthedude
+	sqdeepthroat
+	sq-voyeur
+	sq-bdsm
+	sq-pose
+)
+
+for tumbname in ${tumbarray[@]}; do
+	targetDir=$basedir/$tumbname
+	tumblog=$tumbname.tumblr.com
+
+	# Log state of current folder
+	ls $targetDir -1 > /home/kanon/logs/kumbdl-ls-$tumbname-1.log
+
+	# Scrape it
+	/home/kanon/Downloads/tumbdl-master/kumbdl.sh $tumblog $targetDir
+
+	# Log state of folder again and log newly downloaded files 
+	timestamp="$(date +"%F %T")"
+	printf "\n" >> /home/kanon/logs/kumbdl-ls-diff-$tumbname.log
+	echo $timestamp >> /home/kanon/logs/kumbdl-ls-diff-$tumbname.log
+	printf "\n" >> /home/kanon/logs/kumbdl-ls-diff-$tumbname.log
+	ls $targetDir -1 > /home/kanon/logs/kumbdl-ls-$tumbname-2.log
+	diff --suppress-common-lines /home/kanon/logs/kumbdl-ls-$tumbname-2.log /home/kanon/logs/kumbdl-ls-$tumbname-1.log | sed 's/^[[:digit:]]\+d[[:digit:]]\+$//' | sed 's/^[[:digit:]]\+,[[:digit:]]\+d[[:digit:]]\+$//' | sed 's/^< //' >> /home/kanon/logs/kumbdl-ls-diff-$tumbname.log
+done
