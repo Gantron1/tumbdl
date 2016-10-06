@@ -127,7 +127,7 @@ while [[ $quit -ne 1 ]]; do
 
 					# If no $video found, it might be in a new url format (Should check if more than a : should be added to the regex.)
 					if [[ -z $video ]]; then
-						video=$(cat "$pfileName" | grep -o "http[s]*://www.tumblr.com/video_file/[:A-Za-z0-9]*/[0-9]*/tumblr_[A-Za-z0-9]*")
+						video=$(cat "$pfileName" | grep -o "http[s]*://www.tumblr.com/video_file/[\-:A-Za-z0-9]*/[0-9]*/tumblr_[A-Za-z0-9]*")
 					fi
 
 					# If still no $video found, fallback to youtube-dl again
